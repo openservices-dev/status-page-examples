@@ -1,0 +1,10 @@
+services:
+  status-page:
+    image: node:22-alpine
+    working_dir: /home/node
+    command: sh -c "corepack enable && yarn set version berry && yarn install && yarn start"
+    restart: unless-stopped
+    volumes:
+      - "./:/home/node"
+    ports:
+      - 3000:3000
