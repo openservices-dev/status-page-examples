@@ -16,6 +16,12 @@ const Menu = () => {
               <NavDropdown.Item as={Link} to="/simple">Simple</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/simple-cards">Simple cards</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/cards-with-commit">Cards with commit</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/simple-table">Simple table</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/table-with-commits">Table with commits</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Ideas" id="basic-nav-dropdown" active>
+              <NavDropdown.Item as={Link} to="/multiple-environments">Multiple environments</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/services-status">Services status</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

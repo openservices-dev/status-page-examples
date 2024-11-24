@@ -5,7 +5,11 @@ import caution from '../../images/caution.svg';
 import cancel from '../../images/cancel2.svg';
 import settingsWheel from '../../images/settings-wheel.svg';
 
-const Home: React.FC = () => {
+interface Props {
+  projects: Project[];
+}
+
+const Simple: React.FC<Props> = ({ projects }: Props) => {
   return (
     <>
       <Row>
@@ -43,8 +47,23 @@ const Home: React.FC = () => {
           </div>
         </Col>
       </Row>
+      <Row className="mt-4">
+        <Col md={{ span: 6, offset: 3 }}>
+          <div>
+            <hr />
+            {
+              projects.map((project: Project) => (
+                <div key={project.id}>
+                  <p className="ps-4 pe-4"><span className="fw-medium">{project.name}</span> <small className="text-muted">{project.release?.tag}</small> <img src={checkmarkBolder} style={{ height: '1.3rem' }} className="float-end" /></p>
+                  <hr />
+                </div>
+              ))
+            }
+          </div>
+        </Col>
+      </Row>
     </>
   );
 }
 
-export default Home;
+export default Simple;
