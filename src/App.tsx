@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import Footer from './components/Footer';
@@ -6,11 +6,11 @@ import Home from './pages/Home';
 import Examples from './pages/Examples';
 import './App.css';
 
-const App: React.FC = () => (
+const App: FunctionComponent = () => (
   <BrowserRouter>
     <>
       <Menu />
-      <main role="main" className="flex-shrink-0 main-container" style={{ marginTop: 25, marginBottom: 25 }}>
+      <main role="main" className="flex-shrink-0 main-container mt-5 mb-5">
         <Routes>
           <Route path="/:name" element={<Examples />} />
           <Route path="/" element={<Home />} />

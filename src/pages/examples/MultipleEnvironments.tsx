@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -12,7 +13,7 @@ interface Props {
   projects: Project[];
 }
 
-const CardsWithCommit: React.FC<Props> = ({ projects }: Props) => {
+const CardsWithCommit: FunctionComponent<Props> = ({ projects }: Props) => {
   const [filter, setFilter] = useState<string>('');
 
   const multiEnvProjects = projects.map((project: Project) => {

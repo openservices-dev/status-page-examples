@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import type { FunctionComponent } from 'react';
 import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Simple from './examples/Simple';
@@ -9,13 +10,13 @@ import TableWithCommits from './examples/TableWithCommits';
 import MultipleEnvironments from './examples/MultipleEnvironments';
 import { getProjects } from '../api/services';
 
-const Home: React.FC = () => {
+const Home: FunctionComponent = () => {
   const [projects, setProjects] = useState([]);
   const params = useParams();
   const name = params.name;
 
   useEffect(() => {
-    getProjects()
+    getProjects('zdielaj-si')
       .then(data => setProjects(data));
   }, []);
   

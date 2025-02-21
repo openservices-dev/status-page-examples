@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -7,7 +7,7 @@ import caution from '../../images/caution.svg';
 import cancel from '../../images/cancel2.svg';
 import settingsWheel from '../../images/settings-wheel.svg';
 
-const CardsWithCommit: React.FC = () => {
+const CardsWithCommit: FunctionComponent = () => {
   return (
     <>
       <Row className="mt-5">

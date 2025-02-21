@@ -1,24 +1,21 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import type { FunctionComponent, ReactNode } from 'react';
 
 interface Props {
   title: string;
   description: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const SEO: React.FC<Props> = (props) => (
+const SEO: FunctionComponent<Props> = (props) => (
   <>
-    <Helmet>
-      {
-        props.title.length === 0 ? (
-          <title>Zdielaj.si</title>
-        ) : (
-          <title>{props.title} | Zdielaj.si</title>
-        )
-      }
-      <meta name="description" content={props.description} />
-    </Helmet>
+    {
+      props.title.length === 0 ? (
+        <title>Status</title>
+      ) : (
+        <title>{ `${props.title} | Status`}</title>
+      )
+    }
+    <meta name="description" content={props.description} />
     {props.children}
   </>
 );

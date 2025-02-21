@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 import Container from 'react-bootstrap/Container';
 import SEO from '../components/SEO';
 import Simple from './examples/Simple';
@@ -6,7 +6,7 @@ import SimpleCards from './examples/SimpleCards';
 import CardsWithCommit from './examples/CardsWithCommit';
 import { projects } from '../api/projects';
 
-const Home: React.FC = () => {
+const Home: FunctionComponent = () => {
   return (
     <SEO title="" description="">
       <Container fluid="xl">

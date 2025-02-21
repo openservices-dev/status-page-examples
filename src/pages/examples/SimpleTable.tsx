@@ -1,3 +1,4 @@
+import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
@@ -10,7 +11,7 @@ interface Props {
   projects: Project[];
 }
 
-const SimpleTable: React.FC<Props> = ({ projects }: Props) => {
+const SimpleTable: FunctionComponent<Props> = ({ projects }: Props) => {
   return (
     <>
       <Row>

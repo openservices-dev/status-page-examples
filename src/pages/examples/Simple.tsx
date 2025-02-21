@@ -1,3 +1,4 @@
+import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import checkmarkBolder from '../../images/checkmark-bolder.svg';
@@ -9,7 +10,7 @@ interface Props {
   projects: Project[];
 }
 
-const Simple: React.FC<Props> = ({ projects }: Props) => {
+const Simple: FunctionComponent<Props> = ({ projects }: Props) => {
   return (
     <>
       <Row>
