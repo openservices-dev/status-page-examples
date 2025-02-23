@@ -9,7 +9,7 @@ const Footer = () => (
         <Col>
           <hr />
           <p className="text-center text-light mb-0">
-            <a href="https://openservices.dev" target="_blank" rel="noopener noreferrer" style={{ color: 'rgb(0, 191, 99)', textDecoration: 'none' }}>OpenServices.dev</a>
+            <a href="https://zdielaj.si" target="_blank" rel="noopener noreferrer" style={{ color: 'rgb(69, 126, 243)', textDecoration: 'none' }}>Zdielaj.si</a>
           </p>
         </Col>
       </Row>      
