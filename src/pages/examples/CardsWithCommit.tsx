@@ -1,3 +1,4 @@
+import { use } from 'react';
 import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,7 +8,13 @@ import caution from '../../images/caution.svg';
 import cancel from '../../images/cancel2.svg';
 import settingsWheel from '../../images/settings-wheel.svg';
 
-const CardsWithCommit: FunctionComponent = () => {
+interface Props {
+  projectsPromise: Promise<Project[]>;
+}
+
+const CardsWithCommit: FunctionComponent<Props> = ({ projectsPromise }: Props) => {
+  const projects = use(projectsPromise);
+
   return (
     <>
       <Row className="mt-5">
@@ -31,62 +38,28 @@ const CardsWithCommit: FunctionComponent = () => {
         </Col>
       </Row>
       <Row md={2} sm={1} xs={1}>
-        <Col className="mt-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>Application <img src={checkmarkBolder} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text className="mt-4">
-                <p><span className="text-muted">Branch:</span> fix/123-task-name</p>
-                <hr />
-                <p><span className="text-muted">Commit:</span> Fix whatever needs fixing <small>(95efc82)</small></p>
-                <hr />
-                <p className="mb-0"><span className="text-muted">Author:</span> Name Surname</p>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>Auth <img src={caution} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text className="mt-4">
-                <p><span className="text-muted">Branch:</span> feat/add-aws-cognito-authentication</p>
-                <hr />
-                <p><span className="text-muted">Commit:</span> Support AWS Cognito <small>(fa8087a)</small></p>
-                <hr />
-                <p className="mb-0"><span className="text-muted">Author:</span> Cloud Developer</p>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>API <img src={settingsWheel} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text className="mt-4">
-                <p><span className="text-muted">Branch:</span> main</p>
-                <hr />
-                <p><span className="text-muted">Commit:</span> Add caching layer <small>(d2a5c94)</small></p>
-                <hr />
-                <p className="mb-0"><span className="text-muted">Author:</span> Jon Snow</p>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>Upload <img src={cancel} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text className="mt-4">
-                <p><span className="text-muted">Branch:</span> develop</p>
-                <hr />
-                <p><span className="text-muted">Commit:</span> Add support for junk upload <small>(f443e4f)</small></p>
-                <hr />
-                <p className="mb-0"><span className="text-muted">Author:</span> Ned Leeds</p>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
+        {
+          projects.map((project: Project) => (
+            <Col key={project.id} className="mt-4">
+              <Card>
+                <Card.Body>
+                  <Card.Title>{project.name} <img src={checkmarkBolder} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
+                  <Card.Text className="mt-4">
+                    <span className="text-muted">Branch:</span> {project?.commit?.branch}
+                  </Card.Text>
+                  <hr />
+                  <Card.Text>
+                    <span className="text-muted">Commit:</span> {project?.commit?.message} <small>({project?.commit?.hash})</small>
+                  </Card.Text>
+                  <hr />
+                  <Card.Text>
+                    <span className="text-muted">Author:</span> {project?.commit?.author}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+        }
       </Row>
     </>
   );

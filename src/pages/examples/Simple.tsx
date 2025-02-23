@@ -1,3 +1,4 @@
+import { use } from 'react';
 import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,10 +8,12 @@ import cancel from '../../images/cancel2.svg';
 import settingsWheel from '../../images/settings-wheel.svg';
 
 interface Props {
-  projects: Project[];
+  projectsPromise: Promise<Project[]>;
 }
 
-const Simple: FunctionComponent<Props> = ({ projects }: Props) => {
+const Simple: FunctionComponent<Props> = ({ projectsPromise }: Props) => {
+  const projects = use(projectsPromise);
+
   return (
     <>
       <Row>
@@ -31,21 +34,6 @@ const Simple: FunctionComponent<Props> = ({ projects }: Props) => {
         </Col>
         <Col>
           <p><img src={cancel} style={{ maxHeight: '1.5rem' }} /> Error</p>
-        </Col>
-      </Row>
-      <Row className="mt-4">
-        <Col md={{ span: 6, offset: 3 }}>
-          <div>
-            <hr />
-            <p className="ps-4 pe-4"><span className="fw-medium">Application</span> <small className="text-muted">6.0.0-rc.6</small> <img src={checkmarkBolder} style={{ height: '1.3rem' }} className="float-end" /></p>
-            <hr />
-            <p className="ps-4 pe-4"><span className="fw-medium">Auth</span> <img src={caution} style={{ height: '1.3rem' }} className="float-end" /></p>
-            <hr />
-            <p className="ps-4 pe-4"><span className="fw-medium">API</span> <img src={settingsWheel} style={{ height: '1.3rem' }} className="float-end" /></p>
-            <hr />
-            <p className="ps-4 pe-4"><span className="fw-medium">Upload</span>  <small className="text-muted">1.1.0</small> <img src={cancel} style={{ height: '1.3rem' }} className="float-end" /></p>
-            <hr />
-          </div>
         </Col>
       </Row>
       <Row className="mt-4">

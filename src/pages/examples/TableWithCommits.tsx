@@ -1,3 +1,4 @@
+import { use } from 'react';
 import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,10 +9,12 @@ import cancel from '../../images/cancel2.svg';
 import settingsWheel from '../../images/settings-wheel.svg';
 
 interface Props {
-  projects: Project[];
+  projectsPromise: Promise<Project[]>;
 }
 
-const TableWithCommits: FunctionComponent<Props> = ({ projects }: Props) => {
+const TableWithCommits: FunctionComponent<Props> = ({ projectsPromise }: Props) => {
+  const projects = use(projectsPromise);
+
   return (
     <>
       <Row>

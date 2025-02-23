@@ -1,3 +1,4 @@
+import { use } from 'react';
 import type { FunctionComponent } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,7 +8,12 @@ import caution from '../../images/caution.svg';
 import cancel from '../../images/cancel2.svg';
 import settingsWheel from '../../images/settings-wheel.svg';
 
-const SimpleCards: FunctionComponent = () => {
+interface Props {
+  projectsPromise: Promise<Project[]>;
+}
+
+const SimpleCards: FunctionComponent<Props> = ({ projectsPromise }: Props) => {
+  const projects = use(projectsPromise);
   return (
     <>
       <Row className="mt-5">
@@ -31,38 +37,18 @@ const SimpleCards: FunctionComponent = () => {
         </Col>
       </Row>
       <Row md={2} sm={1} xs={1} className="mt-2">
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Application <img src={checkmarkBolder} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text><small className="text-muted">6.0.0-rc.6</small></Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Auth <img src={caution} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text>&nbsp;</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>API <img src={settingsWheel} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text>&nbsp;</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Upload <img src={cancel} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
-              <Card.Text><small className="text-muted">1.1.0</small></Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
+        {
+          projects.map((project: Project) => (
+            <Col key={project.id} className="mt-2">
+              <Card>
+                <Card.Body>
+                  <Card.Title>{project.name} <img src={checkmarkBolder} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
+                  <Card.Text><small className="text-muted">{project?.release?.tag}</small></Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+        }
       </Row>
     </>
   );

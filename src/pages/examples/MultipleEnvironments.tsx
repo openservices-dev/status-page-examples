@@ -13,7 +13,7 @@ interface Props {
   projects: Project[];
 }
 
-const CardsWithCommit: FunctionComponent<Props> = ({ projects }: Props) => {
+const MultipleEnvironments: FunctionComponent<Props> = ({ projects }: Props) => {
   const [filter, setFilter] = useState<string>('');
 
   const multiEnvProjects = projects.map((project: Project) => {
@@ -74,11 +74,15 @@ const CardsWithCommit: FunctionComponent<Props> = ({ projects }: Props) => {
                 <Card.Body>
                   <Card.Title>{project.name} <img src={checkmarkBolder} style={{ height: '1.3rem' }} className="float-end" /></Card.Title>
                   <Card.Text className="mt-4">
-                    <p><span className="text-muted">Branch:</span> {project.commit?.branch}</p>
-                    <hr />
-                    <p><span className="text-muted">Commit:</span> {project.commit?.message} <small>({project.commit?.hash})</small></p>
-                    <hr />
-                    <p className="mb-0"><span className="text-muted">Author:</span> {project.commit?.author}</p>
+                    <span className="text-muted">Branch:</span> {project.commit?.branch}
+                  </Card.Text>
+                  <hr />
+                  <Card.Text>
+                    <span className="text-muted">Commit:</span> {project.commit?.message} <small>({project.commit?.hash})</small>
+                  </Card.Text>
+                  <hr />
+                  <Card.Text>
+                    <span className="text-muted">Author:</span> {project.commit?.author}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -90,4 +94,4 @@ const CardsWithCommit: FunctionComponent<Props> = ({ projects }: Props) => {
   );
 }
 
-export default CardsWithCommit;
+export default MultipleEnvironments;
